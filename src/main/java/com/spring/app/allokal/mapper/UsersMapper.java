@@ -1,6 +1,7 @@
 package com.spring.app.allokal.mapper;
 
 import com.spring.app.allokal.dto.CheckVO;
+import com.spring.app.allokal.dto.FranchiseeVO;
 import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.SignupVO;
 import lombok.extern.slf4j.Slf4j;
@@ -18,4 +19,6 @@ public interface UsersMapper {
     CheckVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);
     SignupVO signUp_iq(SignupVO signupVO);
+
+    List<FranchiseeVO> getFranchisee();
 }

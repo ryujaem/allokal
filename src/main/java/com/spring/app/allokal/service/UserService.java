@@ -1,6 +1,7 @@
 package com.spring.app.allokal.service;
 
 import com.spring.app.allokal.dto.CheckVO;
+import com.spring.app.allokal.dto.FranchiseeVO;
 import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.SignupVO;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,5 @@ public interface UserService {
     LoginVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);
     SignupVO signUp_iq(SignupVO signupVO);
+    List<FranchiseeVO> getFranchisee();
 }

@@ -21,4 +21,8 @@
         SELECT user_num FROM user where id = '${id}' AND pw = '${pwd}';
     </select>
 
+    <select id="getFranchisee" resultType="FranchiseeVO" parameterType="String">
+        SELECT * FROM franchisee;
+    </select>
+
 </mapper>

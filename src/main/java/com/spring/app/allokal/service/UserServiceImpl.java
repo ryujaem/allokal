@@ -1,10 +1,13 @@
 package com.spring.app.allokal.service;
 
+import com.spring.app.allokal.dto.FranchiseeVO;
 import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.SignupVO;
 import com.spring.app.allokal.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -52,6 +55,14 @@ public class UserServiceImpl implements UserService {
         }
         return signupVO;
     }
+
+    @Override
+    public List<FranchiseeVO> getFranchisee() {
+        List<FranchiseeVO> resultList = usersMapper.getFranchisee();
+        return resultList;
+    }
+
+
 
     //로그인
     @Override
