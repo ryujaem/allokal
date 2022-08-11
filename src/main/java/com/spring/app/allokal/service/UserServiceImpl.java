@@ -62,6 +62,12 @@ public class UserServiceImpl implements UserService {
         return resultList;
     }
 
+    @Override
+    public FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO) {
+        System.out.println("franchisee : "+ usersMapper.sel_franchisee(franchiseeVO).getName());
+        franchiseeVO = usersMapper.sel_franchisee(franchiseeVO);
+        return franchiseeVO;
+    }
 
 
     //로그인

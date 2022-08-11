@@ -14,11 +14,11 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UsersMapper {
-
     LoginVO checkId(LoginVO loginVO);
     CheckVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);
     SignupVO signUp_iq(SignupVO signupVO);
 
     List<FranchiseeVO> getFranchisee();
+    FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
 }

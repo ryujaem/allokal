@@ -23,11 +23,19 @@ public class ExchangeController {
     }
 
 
-    @RequestMapping(value = "/exchage", method = RequestMethod.POST)
+    @RequestMapping(value = "/exchange", method = RequestMethod.POST)
     @ResponseBody
     public List<FranchiseeVO> Franchisee(@RequestBody FranchiseeVO franchiseeVO) {
+
         List<FranchiseeVO> result = userService.getFranchisee();
         return result;
+    }
+
+    @RequestMapping(value = "/sel_franchisee", method = RequestMethod.POST)
+    @ResponseBody
+    public FranchiseeVO sel_franchisee(@RequestBody FranchiseeVO franchiseeVO) {
+
+        return userService.sel_franchisee(franchiseeVO);
     }
 
 }

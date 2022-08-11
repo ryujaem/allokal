@@ -4,14 +4,12 @@
 
 <mapper namespace="com.spring.app.allokal.mapper.UsersMapper">
 
-    <select id="checkOverlap" resultType="CheckVO" parameterType="String">
-        SELECT * FROM user where id = '${id}';
-    </select>
-
     <select id="checkId" resultType="LoginVO" parameterType="String">
         SELECT user_num FROM user where id = '${id}' and pw = '${pwd}';
     </select>
-
+    <select id="checkOverlap" resultType="CheckVO" parameterType="String">
+        SELECT * FROM user where id = '${id}';
+    </select>
     <insert id="signUp" parameterType="String">
         INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
         VALUES('${id}','${pwd}','${email}','${tel_phone}','${country}','${name}','1',now())
@@ -25,4 +23,7 @@
         SELECT * FROM franchisee;
     </select>
 
+    <select id="sel_franchisee" resultType="FranchiseeVO" parameterType="String">
+        SELECT * FROM franchisee WHERE name = '${name}';
+    </select>
 </mapper>

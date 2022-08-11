@@ -1,5 +1,7 @@
 package com.spring.app.allokal.dto;
 
+import java.util.List;
+
 public class FranchiseeVO {
     int num;
     String name;
@@ -47,4 +49,5 @@ public class FranchiseeVO {
     String address;
     String tel;
     String useable_time;
+
 }

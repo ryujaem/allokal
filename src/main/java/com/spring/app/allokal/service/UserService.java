@@ -16,4 +16,5 @@ public interface UserService {
     int signUp(SignupVO signupVO);
     SignupVO signUp_iq(SignupVO signupVO);
     List<FranchiseeVO> getFranchisee();
+    FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
 }

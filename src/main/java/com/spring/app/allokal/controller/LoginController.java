@@ -23,6 +23,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public LoginVO Login(@RequestBody LoginVO loginVO) {
+
         return userService.checkId(loginVO);
     }
 
