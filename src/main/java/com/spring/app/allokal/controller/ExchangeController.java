@@ -2,6 +2,7 @@ package com.spring.app.allokal.controller;
 
 import com.spring.app.allokal.dto.FranchiseeVO;
 import com.spring.app.allokal.dto.LoginVO;
+import com.spring.app.allokal.dto.ReservationVO;
 import com.spring.app.allokal.dto.SignupVO;
 import com.spring.app.allokal.mapper.UsersMapper;
 import com.spring.app.allokal.service.UserService;
@@ -36,6 +37,12 @@ public class ExchangeController {
     public FranchiseeVO sel_franchisee(@RequestBody FranchiseeVO franchiseeVO) {
 
         return userService.sel_franchisee(franchiseeVO);
+    }
+    @RequestMapping(value = "/reservation", method = RequestMethod.POST)
+    @ResponseBody
+    public ReservationVO insert(@RequestBody ReservationVO reservationVO) {
+        userService.reservation(reservationVO);
+        return reservationVO;
     }
 
 }

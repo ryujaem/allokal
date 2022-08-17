@@ -4,16 +4,13 @@
 
 <mapper namespace="com.spring.app.allokal.mapper.UsersMapper">
 
+    <!--SELECT -->
     <select id="checkId" resultType="LoginVO" parameterType="String">
         SELECT user_num FROM user where id = '${id}' and pw = '${pwd}';
     </select>
     <select id="checkOverlap" resultType="CheckVO" parameterType="String">
         SELECT * FROM user where id = '${id}';
     </select>
-    <insert id="signUp" parameterType="String">
-        INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
-        VALUES('${id}','${pwd}','${email}','${tel_phone}','${country}','${name}','1',now())
-    </insert>
 
     <select id="signUp_iq" resultType="SignupVO" parameterType="String">
         SELECT user_num FROM user where id = '${id}' AND pw = '${pwd}';
@@ -26,4 +23,14 @@
     <select id="sel_franchisee" resultType="FranchiseeVO" parameterType="String">
         SELECT * FROM franchisee WHERE name = '${name}';
     </select>
+    <!--INSERT -->
+    <insert id="signUp" parameterType="String">
+        INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
+        VALUES('${id}','${pwd}','${email}','${tel_phone}','${country}','${name}','1',now())
+    </insert>
+
+    <insert id="reservation" parameterType="String">
+        INSERT INTO user_record(franchisee_name,money,ex_money,require_date,useable,user_num)
+        VALUES('${franchisee_name}','${money}','${ex_money}',now(),'Y','${user_num}')
+    </insert>
 </mapper>

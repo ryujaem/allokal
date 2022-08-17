@@ -2,6 +2,7 @@ package com.spring.app.allokal.service;
 
 import com.spring.app.allokal.dto.FranchiseeVO;
 import com.spring.app.allokal.dto.LoginVO;
+import com.spring.app.allokal.dto.ReservationVO;
 import com.spring.app.allokal.dto.SignupVO;
 import com.spring.app.allokal.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,16 @@ public class UserServiceImpl implements UserService {
         System.out.println("franchisee : "+ usersMapper.sel_franchisee(franchiseeVO).getName());
         franchiseeVO = usersMapper.sel_franchisee(franchiseeVO);
         return franchiseeVO;
+    }
+
+    @Override
+    public int reservation(ReservationVO reservationVO) {
+        System.out.println("getFranchisee_name :" + reservationVO.getFranchisee_name());
+        System.out.println("getEx_money :" + reservationVO.getEx_money());
+        System.out.println("getMoney :" + reservationVO.getMoney());
+        System.out.println("getUser_num :" + reservationVO.getUser_num());
+        usersMapper.reservation(reservationVO);
+        return 0;
     }
 
 

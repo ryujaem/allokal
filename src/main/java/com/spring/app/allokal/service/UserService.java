@@ -1,9 +1,6 @@
 package com.spring.app.allokal.service;
 
-import com.spring.app.allokal.dto.CheckVO;
-import com.spring.app.allokal.dto.FranchiseeVO;
-import com.spring.app.allokal.dto.LoginVO;
-import com.spring.app.allokal.dto.SignupVO;
+import com.spring.app.allokal.dto.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +14,5 @@ public interface UserService {
     SignupVO signUp_iq(SignupVO signupVO);
     List<FranchiseeVO> getFranchisee();
     FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
+    int reservation(ReservationVO reservationVO);
 }

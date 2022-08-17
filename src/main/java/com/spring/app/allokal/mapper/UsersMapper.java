@@ -1,9 +1,6 @@
 package com.spring.app.allokal.mapper;
 
-import com.spring.app.allokal.dto.CheckVO;
-import com.spring.app.allokal.dto.FranchiseeVO;
-import com.spring.app.allokal.dto.LoginVO;
-import com.spring.app.allokal.dto.SignupVO;
+import com.spring.app.allokal.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,4 +18,5 @@ public interface UsersMapper {
 
     List<FranchiseeVO> getFranchisee();
     FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
+    int reservation(ReservationVO reservationVO);
 }
