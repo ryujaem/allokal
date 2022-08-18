@@ -35,19 +35,12 @@ public class UserServiceImpl implements UserService {
     //회원가입 insert
     @Override
     public int signUp(SignupVO signupVO){
-        System.out.println("id :" + signupVO.getId());
-        System.out.println("pw :" + signupVO.getPwd());
-        System.out.println("email :" + signupVO.getEmail());
-        System.out.println("국적 :" + signupVO.getCountry());
-        System.out.println("이름 :" + signupVO.getName());
-        System.out.println("연락처 :" + signupVO.getTel_phone());
         usersMapper.signUp(signupVO);
         return 0;
     }
 
     @Override
     public SignupVO signUp_iq(SignupVO signupVO) {
-        String user_num = "";
         System.out.println("id :" + signupVO.getId());
         System.out.println("pw :" + signupVO.getPwd());
         if (usersMapper.signUp_iq(signupVO) != null) {
@@ -72,12 +65,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int reservation(ReservationVO reservationVO) {
-        System.out.println("getFranchisee_name :" + reservationVO.getFranchisee_name());
-        System.out.println("getEx_money :" + reservationVO.getEx_money());
-        System.out.println("getMoney :" + reservationVO.getMoney());
-        System.out.println("getUser_num :" + reservationVO.getUser_num());
         usersMapper.reservation(reservationVO);
-        return 0;
+        int GetNum = reservationVO.getNum();
+        return GetNum;
+    }
+    //예약 완료 페이지
+    @Override
+    public ReservationVO sel_reservation(ReservationVO reservationVO) {
+        reservationVO = usersMapper.sel_reservation(reservationVO);
+        return reservationVO;
     }
 
 

@@ -45,4 +45,10 @@ public class ExchangeController {
         return reservationVO;
     }
 
+    @RequestMapping(value = "/lookup/reservation", method = RequestMethod.POST)
+    @ResponseBody
+    public ReservationVO select(@RequestBody ReservationVO reservationVO) {
+
+        return userService.sel_reservation(reservationVO);
+    }
 }

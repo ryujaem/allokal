@@ -1,5 +1,7 @@
 package com.spring.app.allokal.dto;
 
+import java.util.Date;
+
 public class ReservationVO {
     int num;
 
@@ -40,21 +42,6 @@ public class ReservationVO {
         this.ex_money = ex_money;
     }
 
-    public int getRequire_date() {
-        return require_date;
-    }
-
-    public void setRequire_date(int require_date) {
-        this.require_date = require_date;
-    }
-
-    public int getResult_date() {
-        return result_date;
-    }
-
-    public void setResult_date(int result_date) {
-        this.result_date = result_date;
-    }
 
 
     public int getUser_num() {
@@ -65,7 +52,23 @@ public class ReservationVO {
         this.user_num = user_num;
     }
 
-    int require_date;
-    int result_date;
+    public Date getRequire_date() {
+        return require_date;
+    }
+
+    public void setRequire_date(Date require_date) {
+        this.require_date = require_date;
+    }
+
+    public Date getResult_date() {
+        return result_date;
+    }
+
+    public void setResult_date(Date result_date) {
+        this.result_date = result_date;
+    }
+
+    Date require_date;
+    Date result_date;
     int user_num;
 }

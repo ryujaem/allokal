@@ -19,4 +19,6 @@ public interface UsersMapper {
     List<FranchiseeVO> getFranchisee();
     FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
     int reservation(ReservationVO reservationVO);
+
+    ReservationVO sel_reservation(ReservationVO reservationVO);
 }

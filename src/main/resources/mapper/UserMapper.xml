@@ -23,13 +23,17 @@
     <select id="sel_franchisee" resultType="FranchiseeVO" parameterType="String">
         SELECT * FROM franchisee WHERE name = '${name}';
     </select>
+
+    <select id="sel_reservation" resultType="ReservationVO" parameterType="String">
+        SELECT * FROM user_record WHERE num = '${num}' AND useable = 'Y';
+    </select>
     <!--INSERT -->
     <insert id="signUp" parameterType="String">
         INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
         VALUES('${id}','${pwd}','${email}','${tel_phone}','${country}','${name}','1',now())
     </insert>
 
-    <insert id="reservation" parameterType="String">
+    <insert id="reservation" parameterType="String" useGeneratedKeys="true" keyProperty="num">
         INSERT INTO user_record(franchisee_name,money,ex_money,require_date,useable,user_num)
         VALUES('${franchisee_name}','${money}','${ex_money}',now(),'Y','${user_num}')
     </insert>
