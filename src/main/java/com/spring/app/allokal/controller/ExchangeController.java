@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,14 @@ public class ExchangeController {
     public List<FranchiseeVO> Franchisee(@RequestBody FranchiseeVO franchiseeVO) {
 
         List<FranchiseeVO> result = userService.getFranchisee();
+        return result;
+    }
+    //select list
+    @RequestMapping(value = "/lookup/reservation/list", method = RequestMethod.POST)
+    @ResponseBody
+    public ArrayList<ReservationVO> reservation_list(@RequestBody ReservationVO reservationVO) {
+
+        ArrayList<ReservationVO> result = userService.getReservationList(reservationVO);
         return result;
     }
 

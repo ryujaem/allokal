@@ -8,6 +8,7 @@ import com.spring.app.allokal.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -76,12 +77,18 @@ public class UserServiceImpl implements UserService {
         return reservationVO;
     }
 
+    @Override
+    public ArrayList<ReservationVO> getReservationList(ReservationVO reservationVO) {
+        System.out.println("user_num  : "+reservationVO.getUser_num());
+        ArrayList<ReservationVO> resultList = usersMapper.getReservationList(reservationVO);
+        return resultList;
+    }
+
 
     //로그인
     @Override
     public LoginVO checkId(LoginVO loginVO) {
-        System.out.println("login 입력 id :" + loginVO.getId());
-        System.out.println("login 입력 pw :" + loginVO.getPwd());
+
 
         if (usersMapper.checkId(loginVO) != null) {
             System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getUser_num());

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -19,6 +21,6 @@ public interface UsersMapper {
     List<FranchiseeVO> getFranchisee();
     FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
     int reservation(ReservationVO reservationVO);
-
+    ArrayList<ReservationVO> getReservationList(ReservationVO reservationVO);
     ReservationVO sel_reservation(ReservationVO reservationVO);
 }

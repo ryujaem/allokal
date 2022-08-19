@@ -52,14 +52,6 @@ public class ReservationVO {
         this.user_num = user_num;
     }
 
-    public Date getRequire_date() {
-        return require_date;
-    }
-
-    public void setRequire_date(Date require_date) {
-        this.require_date = require_date;
-    }
-
     public Date getResult_date() {
         return result_date;
     }
@@ -68,7 +60,25 @@ public class ReservationVO {
         this.result_date = result_date;
     }
 
-    Date require_date;
+    Date request_date;
+
+    public Date getRequest_date() {
+        return request_date;
+    }
+
+    public void setRequest_date(Date request_date) {
+        this.request_date = request_date;
+    }
+
+    public String getRequire_date() {
+        return require_date;
+    }
+
+    public void setRequire_date(String require_date) {
+        this.require_date = require_date;
+    }
+
+    String require_date;
     Date result_date;
     int user_num;
 }

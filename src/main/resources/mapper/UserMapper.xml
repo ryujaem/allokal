@@ -27,6 +27,10 @@
     <select id="sel_reservation" resultType="ReservationVO" parameterType="String">
         SELECT * FROM user_record WHERE num = '${num}' AND useable = 'Y';
     </select>
+
+    <select id="getReservationList" resultType="ReservationVO" parameterType="String">
+        SELECT * FROM user_record WHERE user_num = '${user_num}' AND useable = 'Y';
+    </select>
     <!--INSERT -->
     <insert id="signUp" parameterType="String">
         INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
@@ -34,7 +38,7 @@
     </insert>
 
     <insert id="reservation" parameterType="String" useGeneratedKeys="true" keyProperty="num">
-        INSERT INTO user_record(franchisee_name,money,ex_money,require_date,useable,user_num)
-        VALUES('${franchisee_name}','${money}','${ex_money}',now(),'Y','${user_num}')
+        INSERT INTO user_record(franchisee_name,money,ex_money,require_date,useable,user_num,request_date)
+        VALUES('${franchisee_name}','${money}','${ex_money}','${require_date}','Y','${user_num}',now())
     </insert>
 </mapper>
