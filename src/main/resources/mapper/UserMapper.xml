@@ -29,7 +29,7 @@
     </select>
 
     <select id="getReservationList" resultType="ReservationVO" parameterType="String">
-        SELECT * FROM user_record WHERE user_num = '${user_num}' AND useable = 'Y';
+        SELECT * FROM user_record WHERE user_num = '${user_num}' AND useable = 'Y' ORDER BY num DESC;
     </select>
     <!--INSERT -->
     <insert id="signUp" parameterType="String">
