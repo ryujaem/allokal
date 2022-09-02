@@ -1,13 +1,13 @@
 package com.spring.app.allokal.service;
 
-import com.spring.app.allokal.dto.FranchiseeVO;
-import com.spring.app.allokal.dto.LoginVO;
-import com.spring.app.allokal.dto.ReservationVO;
-import com.spring.app.allokal.dto.SignupVO;
+import com.spring.app.allokal.api.Download;
+import com.spring.app.allokal.dto.*;
 import com.spring.app.allokal.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +82,15 @@ public class UserServiceImpl implements UserService {
         System.out.println("user_num  : "+reservationVO.getUser_num());
         ArrayList<ReservationVO> resultList = usersMapper.getReservationList(reservationVO);
         return resultList;
+    }
+
+    @Override
+    public int uploader(UploaderVO uploaderVO) {
+
+
+        usersMapper.uploader(uploaderVO);
+
+        return 0;
     }
 
 

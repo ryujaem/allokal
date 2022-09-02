@@ -23,4 +23,5 @@ public interface UsersMapper {
     int reservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> getReservationList(ReservationVO reservationVO);
     ReservationVO sel_reservation(ReservationVO reservationVO);
+    int uploader(UploaderVO uploaderVO);
 }

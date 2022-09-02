@@ -4,6 +4,7 @@ import com.spring.app.allokal.dto.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface UserService {
     int reservation(ReservationVO reservationVO);
     ReservationVO sel_reservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> getReservationList(ReservationVO reservationVO);
+    int uploader(UploaderVO uploaderVO) throws IOException;
 }
