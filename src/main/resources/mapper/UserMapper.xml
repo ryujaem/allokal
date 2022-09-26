@@ -4,10 +4,37 @@
 
 <mapper namespace="com.spring.app.allokal.mapper.UsersMapper">
 
-    <!--SELECT -->
+    <!-- SELECT -->
+    <!-- ADMIN -->
+    <select id="getAuth" resultType="LoginVO" parameterType="String">
+        SELECT auth FROM user WHERE id = '${id}' and pw = '${pwd}';
+    </select>
+
+    <select id="allReservation" resultType="ReservationVO" parameterType="String">
+        SELECT A.*,B.address,C.name FROM user_record A
+        LEFT JOIN franchisee B ON A.franchisee_name  = B.name
+        LEFT JOIN user C ON A.user_num = C.user_num
+        WHERE A.useable = 'Y';
+    </select>
+
+    <select id="todayReservation" resultType="ReservationVO" parameterType="String">
+        SELECT A.*,B.address,C.name FROM user_record A
+        LEFT JOIN franchisee B ON A.franchisee_name  = B.name
+        LEFT JOIN user C ON A.user_num = C.user_num
+        WHERE DATE_FORMAT(A.request_date,'%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d') AND A.useable = 'Y';
+    </select>
+
+    <select id="completionReservation" resultType="ReservationVO" parameterType="String">
+        SELECT A.*,B.address,C.name FROM user_record A
+        LEFT JOIN franchisee B ON A.franchisee_name  = B.name
+        LEFT JOIN user C ON A.user_num = C.user_num
+        WHERE A.result_date IS NOT NULL;
+    </select>
+    <!-- USER -->
     <select id="checkId" resultType="LoginVO" parameterType="String">
         SELECT user_num FROM user where id = '${id}' and pw = '${pwd}';
     </select>
+
     <select id="checkOverlap" resultType="CheckVO" parameterType="String">
         SELECT * FROM user where id = '${id}';
     </select>
@@ -43,6 +70,6 @@
     </insert>
 
     <update id="uploader" parameterType="String">
-        UPDATE user SET file_name = '${fileName}',file_path = '${filePath}' WHERE user_num = '${user_num}'
+        UPDATE user SET file_name = '${fileName}',file_path = '${filePath}',auth = '2' WHERE user_num = '${user_num}'
     </update>
 </mapper>
