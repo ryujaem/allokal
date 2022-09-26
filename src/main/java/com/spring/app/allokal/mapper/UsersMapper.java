@@ -13,11 +13,14 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UsersMapper {
+    ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO);
+    ArrayList<ReservationVO> allReservation(ReservationVO reservationVO);
+    ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO);
     LoginVO checkId(LoginVO loginVO);
     CheckVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);
     SignupVO signUp_iq(SignupVO signupVO);
-
+    LoginVO getAuth(LoginVO loginVO);
     List<FranchiseeVO> getFranchisee();
     FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO);
     int reservation(ReservationVO reservationVO);

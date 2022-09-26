@@ -10,6 +10,10 @@ import java.util.List;
 
 @Repository
 public interface UserService {
+    ArrayList<ReservationVO> allReservation(ReservationVO reservationVO);
+    ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO);
+    ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO);
+    LoginVO getAuth(LoginVO loginVO);
     LoginVO checkId(LoginVO loginVO);
     LoginVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);

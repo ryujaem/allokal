@@ -1,12 +1,8 @@
 package com.spring.app.allokal.dto;
 
-public class CheckVO {
-    public String getId() {
-        return id;
-    }
+import lombok.Data;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+@Data
+public class CheckVO {
     String id ;
 }

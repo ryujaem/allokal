@@ -1,16 +1,16 @@
 package com.spring.app.allokal.service;
 
-import com.spring.app.allokal.api.Download;
 import com.spring.app.allokal.dto.*;
 import com.spring.app.allokal.mapper.UsersMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -29,13 +29,12 @@ public class UserServiceImpl implements UserService {
         } catch (NullPointerException e) {
             loginVO.setId("");
         }
-
         return loginVO;
     }
 
     //회원가입 insert
     @Override
-    public int signUp(SignupVO signupVO){
+    public int signUp(SignupVO signupVO) {
         usersMapper.signUp(signupVO);
         return 0;
     }
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public FranchiseeVO sel_franchisee(FranchiseeVO franchiseeVO) {
-        System.out.println("franchisee : "+ usersMapper.sel_franchisee(franchiseeVO).getName());
+        System.out.println("franchisee : " + usersMapper.sel_franchisee(franchiseeVO).getName());
         franchiseeVO = usersMapper.sel_franchisee(franchiseeVO);
         return franchiseeVO;
     }
@@ -70,6 +69,7 @@ public class UserServiceImpl implements UserService {
         int GetNum = reservationVO.getNum();
         return GetNum;
     }
+
     //예약 완료 페이지
     @Override
     public ReservationVO sel_reservation(ReservationVO reservationVO) {
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<ReservationVO> getReservationList(ReservationVO reservationVO) {
-        System.out.println("user_num  : "+reservationVO.getUser_num());
+        System.out.println("user_num  : " + reservationVO.getUser_num());
         ArrayList<ReservationVO> resultList = usersMapper.getReservationList(reservationVO);
         return resultList;
     }
@@ -87,26 +87,63 @@ public class UserServiceImpl implements UserService {
     @Override
     public int uploader(UploaderVO uploaderVO) {
 
-
         usersMapper.uploader(uploaderVO);
 
         return 0;
     }
 
 
+
+
+    @Override
+    public ArrayList<ReservationVO> allReservation(ReservationVO reservationVO) {
+        ArrayList<ReservationVO> resultList = usersMapper.allReservation(reservationVO);
+        if (resultList != null) {
+            System.out.println("allReservation : " + resultList.get(0).getAddress());
+        }
+        return resultList;
+    }
+
+    @Override
+    public ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO) {
+        ArrayList<ReservationVO> resultList = usersMapper.todayReservation(reservationVO);
+        if (resultList != null) {
+            System.out.println("allReservation : " + resultList.get(0).getAddress());
+        }
+        return resultList;
+    }
+
+    @Override
+    public ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO) {
+        ArrayList<ReservationVO> resultList = usersMapper.completionReservation(reservationVO);
+        if (resultList != null) {
+            System.out.println("allReservation : " + resultList.get(0).getAddress());
+        }
+        return resultList;
+    }
+
+    @Override
+    public LoginVO getAuth(LoginVO loginVO) {
+        if (usersMapper.getAuth(loginVO) != null) {
+            System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getAuth());
+            loginVO.setAuth(usersMapper.getAuth(loginVO).getAuth());
+        }
+        return loginVO;
+    }
+
     //로그인
     @Override
     public LoginVO checkId(LoginVO loginVO) {
 
-
         if (usersMapper.checkId(loginVO) != null) {
             System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getUser_num());
             loginVO.setUser_num(usersMapper.checkId(loginVO).getUser_num());
+            /*SecurityService securityService = new SecurityService();
+            loginVO.setToken(securityService.createToken(loginVO.getId(),2*60*1000));*/
         }
 
         return loginVO;
     }
-
 
 
 }
