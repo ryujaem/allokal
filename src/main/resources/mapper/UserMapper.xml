@@ -10,6 +10,14 @@
         SELECT auth FROM user WHERE id = '${id}' and pw = '${pwd}';
     </select>
 
+    <select id="getUserData" parameterType="String" resultType="UserData">
+        SELECT A.*,B.address,C.country,C.tel_phone,C.name  FROM user_record A
+        LEFT JOIN franchisee B ON A.franchisee_name = B.name
+        LEFT JOIN user C ON A.user_num = C.user_num
+        WHERE A.user_num = ${user_num} and A.num = ${num};
+
+    </select>
+
     <select id="allReservation" resultType="ReservationVO" parameterType="String">
         SELECT A.*,B.address,C.name FROM user_record A
         LEFT JOIN franchisee B ON A.franchisee_name  = B.name

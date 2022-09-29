@@ -2,6 +2,7 @@ package com.spring.app.allokal.service;
 
 import com.spring.app.allokal.dto.*;
 import com.spring.app.allokal.mapper.UsersMapper;
+import com.spring.app.allokal.security.SecurityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
         return signupVO;
     }
 
+    //Service
     @Override
     public List<FranchiseeVO> getFranchisee() {
         List<FranchiseeVO> resultList = usersMapper.getFranchisee();
@@ -92,8 +94,11 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
-
-
+    @Override
+    public UserData getUserData(UserData userData) {
+        UserData result = usersMapper.getUserData(userData);
+        return result;
+    }
 
     @Override
     public ArrayList<ReservationVO> allReservation(ReservationVO reservationVO) {
@@ -107,8 +112,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO) {
         ArrayList<ReservationVO> resultList = usersMapper.todayReservation(reservationVO);
-        if (resultList != null) {
-            System.out.println("allReservation : " + resultList.get(0).getAddress());
+        if (resultList.isEmpty()) {
+            System.out.println("todayReservation : null");
+        }else{
+            System.out.println("todayReservation : " + resultList.get(0).getAddress());
         }
         return resultList;
     }
@@ -138,8 +145,8 @@ public class UserServiceImpl implements UserService {
         if (usersMapper.checkId(loginVO) != null) {
             System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getUser_num());
             loginVO.setUser_num(usersMapper.checkId(loginVO).getUser_num());
-            /*SecurityService securityService = new SecurityService();
-            loginVO.setToken(securityService.createToken(loginVO.getId(),2*60*1000));*/
+            SecurityService securityService = new SecurityService();
+            loginVO.setToken(securityService.createToken(loginVO.getId(),2*60*1000));
         }
 
         return loginVO;

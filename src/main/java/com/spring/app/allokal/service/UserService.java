@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface UserService {
+    UserData getUserData(UserData userData);
     ArrayList<ReservationVO> allReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO);

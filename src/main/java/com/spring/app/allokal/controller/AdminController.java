@@ -2,8 +2,10 @@ package com.spring.app.allokal.controller;
 
 import com.spring.app.allokal.dto.AdminUploaderVO;
 import com.spring.app.allokal.dto.ReservationVO;
+import com.spring.app.allokal.dto.UserData;
 import com.spring.app.allokal.mapper.UsersMapper;
 import com.spring.app.allokal.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+@Slf4j
 @RestController
 public class AdminController {
     @Autowired
@@ -51,13 +54,21 @@ public class AdminController {
     @RequestMapping(value = "/admin/reservation/files", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<byte[]> userDetailPage(@RequestBody AdminUploaderVO adminUploaderVO) throws IOException {
-        System.out.println("adminUploaderVO In");
 
-        String filepath = "/Users/jaem/user/1/passport/123.png";
+        String filepath = "/Users/jaem/user/"+adminUploaderVO.getUser_num()+"/passport/passport.png";
+        System.out.println("FILE PATH : "+ filepath);
         InputStream in = new FileInputStream(filepath);
         byte[] imageByteArray = IOUtils.toByteArray(in);
         in.close();
+
         return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/admin/reservation/lookup/detail",method = RequestMethod.POST)
+    @ResponseBody
+    public UserData getUserData(@RequestBody UserData userData){
+
+        return userService.getUserData(userData);
     }
 
 }

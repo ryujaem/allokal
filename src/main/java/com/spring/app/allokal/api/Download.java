@@ -8,9 +8,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Download {
     public void saveFile(MultipartFile file, String directoryPath) throws IOException {
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String formatedNow = now.format(formatter);
         // parent directory를 찾는다.
         Path directory = Paths.get(directoryPath).toAbsolutePath().normalize();
 
@@ -18,7 +23,7 @@ public class Download {
         Files.createDirectories(directory);
 
         // 파일명을 바르게 수정한다.
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(formatedNow+"_"+file.getOriginalFilename());
 
         // 파일명에 '..' 문자가 들어 있다면 오류를 발생하고 아니라면 진행(해킹및 오류방지)
         Assert.state(!fileName.contains(".."), "Name of file cannot contain '..'");

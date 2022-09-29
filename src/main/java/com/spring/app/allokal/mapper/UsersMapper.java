@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UsersMapper {
+    UserData getUserData(UserData userData);
     ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> allReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO);
