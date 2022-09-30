@@ -13,10 +13,15 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UsersMapper {
+    //Admin
     UserData getUserData(UserData userData);
     ArrayList<ReservationVO> todayReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> allReservation(ReservationVO reservationVO);
     ArrayList<ReservationVO> completionReservation(ReservationVO reservationVO);
+    int update_Reservation(UploaderVO uploaderVO);
+    //User
+
+
     LoginVO checkId(LoginVO loginVO);
     CheckVO checkOverlap(LoginVO loginVO);
     int signUp(SignupVO signupVO);

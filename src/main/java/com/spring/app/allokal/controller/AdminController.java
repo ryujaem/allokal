@@ -1,6 +1,7 @@
 package com.spring.app.allokal.controller;
 
 import com.spring.app.allokal.dto.AdminUploaderVO;
+import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.ReservationVO;
 import com.spring.app.allokal.dto.UserData;
 import com.spring.app.allokal.mapper.UsersMapper;
@@ -26,6 +27,10 @@ public class AdminController {
     public AdminController(UsersMapper usersMapper) {
         this.userService = userService;
     }
+
+    @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
+    @ResponseBody
+    public LoginVO Login_admin(@RequestBody LoginVO loginVO) { return userService.checkId(loginVO); }
 
     @RequestMapping(value = "/admin/reservation/lookup", method = RequestMethod.POST)
     @ResponseBody

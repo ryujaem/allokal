@@ -16,6 +16,7 @@ public class Download {
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String formatedNow = now.format(formatter);
+
         // parent directory를 찾는다.
         Path directory = Paths.get(directoryPath).toAbsolutePath().normalize();
 

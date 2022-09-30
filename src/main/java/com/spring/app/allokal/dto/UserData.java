@@ -12,4 +12,6 @@ public class UserData {
     String address;
     int money;
     int ex_money;
+    String require_date;
+    String result_date;
 }

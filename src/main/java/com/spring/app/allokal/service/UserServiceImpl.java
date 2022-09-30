@@ -130,6 +130,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int update_Reservation(UploaderVO uploaderVO) {
+        usersMapper.update_Reservation(uploaderVO);
+        return 0;
+    }
+
+    @Override
     public LoginVO getAuth(LoginVO loginVO) {
         if (usersMapper.getAuth(loginVO) != null) {
             System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getAuth());

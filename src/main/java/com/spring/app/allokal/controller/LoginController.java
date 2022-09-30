@@ -24,10 +24,4 @@ public class LoginController {
     @ResponseBody
     public LoginVO Login(@RequestBody LoginVO loginVO) { return userService.checkId(loginVO);}
 
-    @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
-    @ResponseBody
-    public LoginVO Login_admin(@RequestBody LoginVO loginVO) { return userService.checkId(loginVO );
-
-    }
-
 }
