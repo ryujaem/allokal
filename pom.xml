@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>allokal</name>
 	<description>Allokal application for Testing</description>
+	<packaging>jar</packaging>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
