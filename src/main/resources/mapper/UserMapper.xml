@@ -6,30 +6,30 @@
 
 
     <!-- ADMIN -->
-    <update id="update_Reservation" parameterType="String">
-        UPDATE user_record SET result_date = DATE_FORMAT(NOW(), '%Y-%m-%d %h:$m') WHERE user_num = '#{user_num}' and num = '#{num}'
+    <update id="update_Reservation" parameterType="HashMap">
+        UPDATE user_record SET result_date = DATE_FORMAT(NOW(), '%Y-%m-%d %h:%m') WHERE user_num = #{user_num} and num = #{num}
     </update>
 
-    <select id="getAuth" resultType="LoginVO" parameterType="String">
-        SELECT auth FROM user WHERE id = '${id}' and pw = '${pwd}';
+    <select id="getAuth" resultType="LoginVO" parameterType="HashMap">
+        SELECT auth FROM user WHERE id = #{id} and pw = #{id} ;
     </select>
 
-    <select id="getUserData" parameterType="String" resultType="UserData">
+    <select id="getUserData" parameterType="HashMap" resultType="UserData">
         SELECT A.*,B.address,C.country,C.tel_phone,C.name  FROM user_record A
         LEFT JOIN franchisee B ON A.franchisee_name = B.name
         LEFT JOIN user C ON A.user_num = C.user_num
-        WHERE A.user_num = ${user_num} and A.num = ${num};
+        WHERE A.user_num = #{user_num} and A.num = #{num};
 
     </select>
 
-    <select id="allReservation" resultType="ReservationVO" parameterType="String">
-        SELECT A.*,B.address,C.name FROM user_record A
+    <select id="allReservation" resultType="ReservationVO" parameterType="HashMap">
+        SELECT A.*,B.address,C.name,C.file_name,C.file_path FROM user_record A
         LEFT JOIN franchisee B ON A.franchisee_name  = B.name
         LEFT JOIN user C ON A.user_num = C.user_num
         WHERE A.useable = 'Y' and A.result_date IS NULL;
     </select>
 
-    <select id="todayReservation" resultType="ReservationVO" parameterType="String">
+    <select id="todayReservation" resultType="ReservationVO" parameterType="HashMap">
         SELECT A.*,B.address,C.name FROM user_record A
         LEFT JOIN franchisee B ON A.franchisee_name  = B.name
         LEFT JOIN user C ON A.user_num = C.user_num
@@ -37,7 +37,7 @@
         AND A.result_date IS NULL;
     </select>
 
-    <select id="completionReservation" resultType="ReservationVO" parameterType="String">
+    <select id="completionReservation" resultType="ReservationVO" parameterType="HashMap">
         SELECT A.*,B.address,C.name FROM user_record A
         LEFT JOIN franchisee B ON A.franchisee_name  = B.name
         LEFT JOIN user C ON A.user_num = C.user_num
@@ -45,45 +45,45 @@
     </select>
 
     <!-- USER -->
-    <select id="checkId" resultType="LoginVO" parameterType="String">
-        SELECT user_num FROM user where id = '${id}' and pw = '${pwd}';
+    <select id="checkId" resultType="LoginVO" parameterType="HashMap">
+        SELECT user_num FROM user where id = #{id} and pw = #{pwd};
     </select>
 
-    <select id="checkOverlap" resultType="CheckVO" parameterType="String">
-        SELECT * FROM user where id = '${id}';
+    <select id="checkOverlap" resultType="CheckVO" parameterType="HashMap">
+        SELECT * FROM user where id = #{id};
     </select>
 
-    <select id="signUp_iq" resultType="SignupVO" parameterType="String">
-        SELECT user_num FROM user where id = '${id}' AND pw = '${pwd}';
+    <select id="signUp_iq" resultType="SignupVO" parameterType="HashMap">
+        SELECT user_num FROM user where id = #{id} AND pw = #{pwd};
     </select>
 
-    <select id="getFranchisee" resultType="FranchiseeVO" parameterType="String">
+    <select id="getFranchisee" resultType="FranchiseeVO" parameterType="HashMap">
         SELECT * FROM franchisee;
     </select>
 
-    <select id="sel_franchisee" resultType="FranchiseeVO" parameterType="String">
-        SELECT * FROM franchisee WHERE name = '${name}';
+    <select id="sel_franchisee" resultType="FranchiseeVO" parameterType="HashMap">
+        SELECT * FROM franchisee WHERE name = #{name};
     </select>
 
-    <select id="sel_reservation" resultType="ReservationVO" parameterType="String">
-        SELECT * FROM user_record WHERE num = '${num}' AND useable = 'Y';
+    <select id="sel_reservation" resultType="ReservationVO" parameterType="HashMap">
+        SELECT * FROM user_record WHERE num = #{num} AND useable = 'Y';
     </select>
 
-    <select id="getReservationList" resultType="ReservationVO" parameterType="String">
-        SELECT * FROM user_record WHERE user_num = '${user_num}' AND useable = 'Y' ORDER BY num DESC;
+    <select id="getReservationList" resultType="ReservationVO" parameterType="HashMap">
+        SELECT * FROM user_record WHERE user_num = #{user_num} AND useable = 'Y' ORDER BY num DESC;
     </select>
     <!--INSERT -->
-    <insert id="signUp" parameterType="String">
+    <insert id="signUp" parameterType="HashMap">
         INSERT INTO user(id,pw,email,tel_phone,country,name,auth,signup_date)
-        VALUES('${id}','${pwd}','${email}','${tel_phone}','${country}','${name}','1',now())
+        VALUES(#{id},#{pwd},#{email},#{tel_phone},#{country},#{name},'1',now())
     </insert>
 
-    <insert id="reservation" parameterType="String" useGeneratedKeys="true" keyProperty="num">
+    <insert id="reservation" parameterType="HashMap" useGeneratedKeys="true" keyProperty="num">
         INSERT INTO user_record(franchisee_name,money,ex_money,require_date,useable,user_num,request_date)
-        VALUES('${franchisee_name}','${money}','${ex_money}','${require_date}','Y','${user_num}',now())
+        VALUES(#{franchisee_name},#{money},#{ex_money},#{require_date},'Y',#{user_num},now())
     </insert>
 
-    <update id="uploader" parameterType="String">
-        UPDATE user SET file_name = '${fileName}',file_path = '${filePath}',auth = '2' WHERE user_num = '${user_num}'
+    <update id="uploader" parameterType="HashMap">
+        UPDATE user SET file_name = #{fileName},file_path = #{filePath},auth = '2' WHERE user_num = #{user_num}
     </update>
 </mapper>

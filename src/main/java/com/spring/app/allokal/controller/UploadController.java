@@ -36,7 +36,7 @@ public class UploadController {
         String filePath = "/Users/jaem/user/"+uploaderVO.getUser_num()+"/passport";
         download.saveFile(uploaderVO.getFile(),filePath);
         uploaderVO.setFilePath(filePath);
-        uploaderVO.setFileName(uploaderVO.getFile().getOriginalFilename());
+        uploaderVO.setFileName("passport.png");
         userService.uploader(uploaderVO);
         return new UploaderVO();
     }

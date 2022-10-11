@@ -15,5 +15,7 @@ public class ReservationVO {
     Date result_date;
     int user_num;
     String address;
+    String file_name;
+    String file_path;
     String name;
 }
