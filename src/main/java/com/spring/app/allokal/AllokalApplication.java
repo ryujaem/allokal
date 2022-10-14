@@ -25,8 +25,7 @@ public class AllokalApplication {
 
 	public static void main(String[] args) throws URISyntaxException, IOException {
 		SpringApplication.run(AllokalApplication.class, args);
-
-
+		System.out.println("서버 실행");
 	}
 
 }

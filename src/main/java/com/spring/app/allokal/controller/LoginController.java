@@ -19,6 +19,14 @@ public class LoginController {
         this.userService = userService;
     }
 
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @ResponseBody
+    public String Test(){
+        System.out.println("TEST IN");
+        String text = "TEST SERVER IN";
+        return text;
+    }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
