@@ -33,7 +33,7 @@ public class UploadController {
     public UploaderVO upload_passport(UploaderVO uploaderVO) throws IOException {
         Download download = new Download();
         System.out.println("fileName : "+uploaderVO.getFile().getOriginalFilename());
-        String filePath = "/Users/jaem/user/"+uploaderVO.getUser_num()+"/passport";
+        String filePath = "~/user/"+uploaderVO.getUser_num()+"/passport";
         download.saveFile(uploaderVO.getFile(),filePath);
         uploaderVO.setFilePath(filePath);
         uploaderVO.setFileName("passport.png");
