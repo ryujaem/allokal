@@ -48,7 +48,7 @@ public class UploadController {
             System.out.println("fileName : " + uploaderVO.getFile().getOriginalFilename());
             System.out.println("num : " + uploaderVO.getNum());
 
-            String filePath = "/Users/jaem/user/" + uploaderVO.getUser_num() + "/signature";
+            String filePath = "~/user/" + uploaderVO.getUser_num() + "/signature";
             download.saveFile(uploaderVO.getFile(), filePath);
             return true;
 
