@@ -137,10 +137,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginVO getAuth(LoginVO loginVO) {
-        if (usersMapper.getAuth(loginVO) != null) {
-            System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getAuth());
-            loginVO.setAuth(usersMapper.getAuth(loginVO).getAuth());
-        }
+        loginVO = usersMapper.getAuth(loginVO);
+        System.out.println("getAuth : "+loginVO.getAuth());
+
         return loginVO;
     }
 
@@ -150,13 +149,14 @@ public class UserServiceImpl implements UserService {
 
         if (usersMapper.checkId(loginVO) != null) {
             System.out.println("login 출력 user_num :" + usersMapper.checkId(loginVO).getUser_num());
+            System.out.println("login 출력 auth :" + usersMapper.checkId(loginVO).getAuth());
             loginVO.setUser_num(usersMapper.checkId(loginVO).getUser_num());
+            loginVO.setAuth(usersMapper.checkId(loginVO).getAuth());
             SecurityService securityService = new SecurityService();
             loginVO.setToken(securityService.createToken(loginVO.getId(),2*60*1000));
         }
 
         return loginVO;
     }
-
 
 }

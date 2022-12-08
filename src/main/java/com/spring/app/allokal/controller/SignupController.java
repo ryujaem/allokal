@@ -1,6 +1,5 @@
 package com.spring.app.allokal.controller;
 
-import com.spring.app.allokal.dto.CheckVO;
 import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.SignupVO;
 import com.spring.app.allokal.mapper.UsersMapper;
@@ -16,11 +15,9 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
-
     public SignupController(UsersMapper usersMapper) {
         this.userService = userService;
     }
-
 
     @RequestMapping(value = "/checkid", method = RequestMethod.POST)
     @ResponseBody

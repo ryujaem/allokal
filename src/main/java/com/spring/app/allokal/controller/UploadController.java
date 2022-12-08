@@ -1,24 +1,16 @@
 package com.spring.app.allokal.controller;
 
-import com.spring.app.allokal.api.Download;
-import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.UploaderVO;
 import com.spring.app.allokal.mapper.UsersMapper;
+import com.spring.app.allokal.module.Download;
 import com.spring.app.allokal.service.UserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import retrofit2.http.Part;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.annotation.MultipartConfig;
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @RestController
 public class UploadController {
@@ -33,7 +25,7 @@ public class UploadController {
     public UploaderVO upload_passport(UploaderVO uploaderVO) throws IOException {
         Download download = new Download();
         System.out.println("fileName : "+uploaderVO.getFile().getOriginalFilename());
-        String filePath = "~/user/"+uploaderVO.getUser_num()+"/passport";
+        String filePath = "user/"+uploaderVO.getUser_num()+"/passport";
         download.saveFile(uploaderVO.getFile(),filePath);
         uploaderVO.setFilePath(filePath);
         uploaderVO.setFileName("passport.png");
@@ -48,7 +40,7 @@ public class UploadController {
             System.out.println("fileName : " + uploaderVO.getFile().getOriginalFilename());
             System.out.println("num : " + uploaderVO.getNum());
 
-            String filePath = "~/user/" + uploaderVO.getUser_num() + "/signature";
+            String filePath = "user/" + uploaderVO.getUser_num() + "/signature";
             download.saveFile(uploaderVO.getFile(), filePath);
             return true;
 

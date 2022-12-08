@@ -4,6 +4,7 @@ import com.spring.app.allokal.dto.AdminUploaderVO;
 import com.spring.app.allokal.dto.LoginVO;
 import com.spring.app.allokal.dto.ReservationVO;
 import com.spring.app.allokal.dto.UserData;
+import com.spring.app.allokal.logging.Logging;
 import com.spring.app.allokal.mapper.UsersMapper;
 import com.spring.app.allokal.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 @Slf4j
 @RestController
 public class AdminController {
+
     @Autowired
     private UserService userService;
 
@@ -28,6 +30,13 @@ public class AdminController {
         this.userService = userService;
     }
 
+    @GetMapping(value = "/log")
+    public String LogPage(){
+        Logging logging = new Logging();
+        logging.info(AdminController.class.getSimpleName());
+
+        return "완료";
+    }
     @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
     @ResponseBody
     public LoginVO Login_admin(@RequestBody LoginVO loginVO) { return userService.checkId(loginVO); }
@@ -60,7 +69,7 @@ public class AdminController {
     @ResponseBody
     public ResponseEntity<byte[]> userDetailPage(@RequestBody AdminUploaderVO adminUploaderVO) throws IOException {
 
-        String filepath = "/Users/jaem/user/"+adminUploaderVO.getUser_num()+"/passport/passport.png";
+        String filepath = "user/"+adminUploaderVO.getUser_num()+"/passport/passport.png";
         System.out.println("FILE PATH : "+ filepath);
         InputStream in = new FileInputStream(filepath);
         byte[] imageByteArray = IOUtils.toByteArray(in);

@@ -10,9 +10,9 @@
         UPDATE user_record SET result_date = DATE_FORMAT(NOW(), '%Y-%m-%d %h:%m') WHERE user_num = #{user_num} and num = #{num}
     </update>
 
-    <select id="getAuth" resultType="LoginVO" parameterType="HashMap">
-        SELECT auth FROM user WHERE id = #{id} and pw = #{id} ;
-    </select>
+    <!--<select id="getAuth" resultType="LoginVO" parameterType="HashMap">
+        SELECT auth FROM user WHERE id = #{id} and pw = #{pw} ;
+    </select>-->
 
     <select id="getUserData" parameterType="HashMap" resultType="UserData">
         SELECT A.*,B.address,C.country,C.tel_phone,C.name  FROM user_record A
@@ -46,7 +46,11 @@
 
     <!-- USER -->
     <select id="checkId" resultType="LoginVO" parameterType="HashMap">
-        SELECT user_num FROM user where id = #{id} and pw = #{pwd};
+        SELECT * FROM user where id = #{id} and pw = #{pwd};
+    </select>
+
+    <select id="getAuth" resultType="LoginVO" parameterType="HashMap">
+        SELECT * FROM user where user_num = #{user_num};
     </select>
 
     <select id="checkOverlap" resultType="CheckVO" parameterType="HashMap">
